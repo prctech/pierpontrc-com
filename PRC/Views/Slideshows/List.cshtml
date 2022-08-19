@@ -1,0 +1,40 @@
+﻿@model IEnumerable<PRC.Models.Slideshow>
+
+@{
+    ViewData["Title"] = "PRC Slideshow Slides";
+    Layout = "_LayoutAdmin";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create">Create Slide</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Slide
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <img src="@Html.DisplayFor(modelItem => item.Url)"/>
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<style>
+    img {
+        max-width: 300px;
+    }
+</style>

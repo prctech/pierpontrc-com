@@ -1,0 +1,40 @@
+﻿@model PRC.Models.Photo
+
+@{
+    ViewData["Title"] = "Edit A Photo";
+    Layout = "_LayoutAdmin";
+}
+
+<h4>@ViewData["Title"]</h4> | <a href="/admin/gallery">Back to Photo Gallery</a>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label>File</label>
+                <div class="input-group">
+                    <input name="file" id="file" class="form-control" type="file" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Alt" class="control-label"></label>
+                <input asp-for="Alt" class="form-control" />
+                <span asp-validation-for="Alt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

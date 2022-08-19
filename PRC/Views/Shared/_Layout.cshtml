@@ -1,0 +1,303 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pierpont Racquet Club | @ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162884929-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-162884929-1');
+    </script>
+</head>
+<body>
+
+    @if (User.IsInRole("editor") || User.IsInRole("admin"))
+    {
+        <a href="/admin/pages" class="btn btn-primary admin-btn go">Admin Area</a>
+    }
+    <div class="container">
+        <main role="main">
+            @if (User.IsInRole("editor") || User.IsInRole("admin"))
+            {
+                <div>
+                    <button class="btn btn-primary admin-btn save">Save Changes</button>
+                </div>
+                <script>
+                    var content = document.querySelector('.editor');
+                    var motd = document.querySelector('.motd');
+                    var save = document.querySelector('.save');
+                    save.addEventListener("click", savePage);
+
+                    function savePage() {
+                        const pageEndPoint = "/Pages/Update";
+                        const motdEndPoint = "/Motd/Update";
+
+                        var content = document.querySelector('.editor');
+                        var motd = document.querySelector('.motd');
+                        var id = document.querySelector('.page-id');
+                        var name = document.querySelector('.page-name');
+                        var url = document.querySelector('.page-url');
+                        var menu = document.querySelector('.page-menuid');
+                        var parent = document.querySelector('.page-parentpage');
+                        var subs = document.querySelector('.page-hassubpages');
+                        var contact = document.querySelector('.page-hascontact');
+                        var dates = document.querySelector('.date-grid');
+                        var motdid = document.querySelector('.page-motdid');
+
+                        var hasSubPages = false;
+                        var hasContact = false;
+
+                        if (subs.innerHTML == "True")
+                            hasSubPages = true;
+
+                        if (contact.innerHTML == "True")
+                            hasContact = true;
+
+                        var sendContent = new XMLHttpRequest();
+
+                        //So duplicate dates don't get written to the database.
+                        dates.innerHTML = "";
+
+                        sendContent.onreadystatechange = function () {
+                            if (this.readyState == 4 && this.status == 200) {
+                                if (motdid) {
+                                    console.log("motd ready");
+                                    var sendMotd = new XMLHttpRequest();
+
+                                    var mdata = JSON.stringify({
+                                        Id: motdid.value,
+                                        Content: motd.innerHTML.toString()
+                                    });
+                                    sendMotd.open("POST", motdEndPoint, true);
+                                    sendMotd.setRequestHeader("Content-type", "application/json");
+                                    sendMotd.send(mdata);
+                                    sendMotd.onreadystatechange = function () {
+                                        location.reload();
+                                    }
+                                } else {
+                                    location.reload();
+                                }
+                            }
+                        }
+
+                        var data = JSON.stringify({
+                            Content: content.innerHTML.toString(),
+                            Id: id.value,
+                            Name: name.value,
+                            Url: url.value,
+                            MenuId: menu.value,
+                            ParentPage: parent.value,
+                            HasSubPages: hasSubPages,
+                            HasContact: hasContact
+                        });
+
+                        sendContent.open("POST", pageEndPoint, true);
+                        sendContent.setRequestHeader("Content-type", "application/json");
+                        sendContent.send(data);
+                    }
+                </script>
+
+            }
+            <img class="logo" src="~/img/prc-logo.png" alt="Pierpont Racquet Club Logo" />
+            <div class="slide-container row mobile-only">
+                <div class="col-md-9">
+                    <div class="slider">
+
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <a class="col-sm-12 btn btn-secondary sub" href="racquet-sports">Racquet Sports</a>
+                    <a class="col-sm-12 btn btn-secondary sub" href="aquatics">Aquatics</a>
+                    <a class="col-sm-12 btn btn-secondary sub" href="fitness">Fitness & Wellness</a>
+                    <a class="col-sm-12 btn btn-secondary sub" href="kid-s-club">Kid's Club</a>
+                    <a class="col-sm-12 btn btn-secondary sub" href="in-the-community">In The Community</a>
+                </div>
+            </div>
+            <header>
+                <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom">
+                    <div class="container">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                            <!--<partial name="_LoginPartial" />-->
+                            <ul class="navbar-nav">
+                                <li class="nav-item social fb">
+                                    <a href="https://www.facebook.com/PierpontRacquetClub" target="_blank">
+                                        <img src="~/img/facebook.svg" />
+                                    </a>
+                                </li>
+                                <li class="nav-item social tw">
+                                    <a href="https://twitter.com/PRC48010670" target="_blank">
+                                        <img src="~/img/twitter.svg" />
+                                    </a>
+                                </li>
+                                <li class="nav-item social ig">
+                                    <a href="https://www.instagram.com/pierpontracquetclub/" target="_blank">
+                                        <img src="~/img/instagram.svg" />
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="navbar-nav flex-grow-1 main-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark " href="/">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" href="/about-us">About Us</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" href="/news">News</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" href="/events">Events</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" href="/contact">Contact Us</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" href="/photo-gallery">Photo Gallery</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" href="/membership">Membership</a>
+                                </li>
+                                <li class="nav-item mobile-only">
+                                    <a class="nav-link" href="racquet-sports">Racquet Sports</a>
+                                </li>
+                                <li class="nav-item mobile-only">
+                                    <a class="nav-link" href="aquatics">Aquatics</a>
+                                </li>
+                                <li class="nav-item mobile-only">
+                                    <a class="nav-link" href="fitness">Fitness & Wellness</a>
+                                </li>
+                                <li class="nav-item mobile-only">
+                                    <a class="nav-link" href="kid-s-club">Kid's Club</a>
+                                </li>
+                                <li class="nav-item mobile-only">
+                                    <a class="nav-link" href="in-the-community">In The Community</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="text-center container">
+        <div class="footer-content">
+            <div class="footer-buttons pb-2">
+                <a href="/get-a-free-pass" class="col-sm-12 col-md-4 btn btn-primary">Get A Free Pass</a>
+                <a href="/membership" class="col-sm-12 col-md-4 btn btn-primary">Become A Member</a>
+            </div>
+            <img class="footer-logo mb-4" src="~/img/prc-logo.png" alt="Pierpont Racquet Club Logo" />
+            <div class="copy pb-2">Copyright © 2020 Pierpont Racquet Club. All Rights Reserved.</div>
+            <div class="footer-nav">
+                <a href="/privacy" class="pr-3">Privacy Policy</a>
+                <a href="/legal" class="pr-3">Legal</a>
+                <a href="/admin/pages">Admin Area</a>
+            </div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js" defer></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="~/js/site.js" asp-append-version="true" defer></script>
+    <script src="~/js/contact.js" asp-append-version="true" defer></script>
+    @if (User.IsInRole("editor") || User.IsInRole("admin"))
+    {
+        <script src="https://cdn.tiny.cloud/1/lfoefk7qndj5rlayjn51gwhegi0w03833rwk5j8o59hqc6do/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+        <script>
+
+            tinymce.init({
+                selector: '.editor, .motd',
+                inline: true,
+                plugins: 'print powerpaste casechange importcss tinydrive searchreplace autolink autosave save directionality code visualblocks visualchars image link media mediaembed template table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists checklist wordcount tinymcespellchecker a11ychecker imagetools textpattern noneditable help formatpainter permanentpen pageembed charmap tinycomments mentions quickbars linkchecker emoticons advtable',
+                mobile: {
+                    plugins: 'print powerpaste casechange importcss tinydrive searchreplace autolink autosave save directionality code visualblocks visualchars image link media mediaembed template table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists checklist wordcount tinymcespellchecker a11ychecker textpattern noneditable help formatpainter pageembed charmap quickbars linkchecker emoticons advtable'
+                },
+                menubar: 'edit view insert format tools table help',
+                toolbar: 'insertfile | undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor backcolor casechange permanentpen formatpainter removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media pageembed template link anchor codesample | a11ycheck ltr rtl',
+                image_advtab: true,
+                autosave_ask_before_unload: false,
+                height: 400,
+                templates: [
+                    { title: 'New Responsive Table', description: 'Creates a new table that works in mobile', content: '<table class="table"  border="0" cellspacing="0" cellpadding="0"><tr><th scope="col"> </th><th scope="col"> </th></tr><tr><td> </td><td> </td></tr></table>' },
+                    { title: 'New Video', description: 'Creates a new section for videos', content: '<p><strong>#. Video Title</strong><br/><span>Video Description</span><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="" allowfullscreen></iframe></div></p>' }
+                ],
+                template_cdate_format: '[Date Created (CDATE): %m/%d/%Y : %H:%M:%S]',
+                template_mdate_format: '[Date Modified (MDATE): %m/%d/%Y : %H:%M:%S]',
+                height: 600,
+                tinydrive_token_provider: '/Pages/Jwt',
+                tinydrive_upload_path: '/uploads',
+                tinydrive_max_image_dimension: 500,
+                image_caption: true,
+                quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
+                noneditable_noneditable_class: "mceNonEditable",
+                toolbar_mode: 'sliding',
+                spellchecker_dialog: true,
+                spellchecker_whitelist: ['Ephox', 'Moxiecode'],
+                tinycomments_mode: 'embedded',
+                contextmenu: "link image imagetools table configurepermanentpen",
+                a11y_advanced_options: true
+            });
+
+            /*tinymce.init({
+                selector: '.editor, .motd',
+                inline: true,
+                plugins: 'print code preview casechange importcss searchreplace autolink autosave save directionality visualblocks visualchars fullscreen image link media mediaembed template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists checklist wordcount imagetools textpattern noneditable help formatpainter permanentpen pageembed charmap mentions quickbars linkchecker emoticons advtable',
+                mobile: {
+                plugins: 'print code preview casechange importcss searchreplace autolink autosave save directionality visualblocks visualchars fullscreen image link media mediaembed template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists checklist wordcount textpattern noneditable help formatpainter pageembed charmap mentions quickbars linkchecker emoticons advtable'
+                },
+                menubar: 'file edit view insert format tools table tc help',
+                toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor backcolor casechange permanentpen formatpainter removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media pageembed template link anchor codesample | a11ycheck ltr rtl | showcomments addcomment',
+                autosave_ask_before_unload: false,
+                autosave_interval: "30s",
+                autosave_prefix: "{path}{query}-{id}-",
+                autosave_restore_when_empty: false,
+                autosave_retention: "2m",
+                image_advtab: true,
+                image_class_list: [
+                { title: 'None', value: '' },
+                { title: 'Some class', value: 'class-name' }
+                ],
+                importcss_append: true,
+                height: 400,
+                templates: [
+                    { title: 'New Table', description: 'creates a new table', content: '<div class="mceTmpl"><table width="98%%"  border="0" cellspacing="0" cellpadding="0"><tr><th scope="col"> </th><th scope="col"> </th></tr><tr><td> </td><td> </td></tr></table></div>' },
+                    { title: 'New list with dates', description: 'New List with dates', content: '<div class="mceTmpl"><span class="cdate">cdate</span><br /><span class="mdate">mdate</span><h2>My List</h2><ul><li></li><li></li></ul></div>' }
+                ],
+                template_cdate_format: '[Date Created (CDATE): %m/%d/%Y : %H:%M:%S]',
+                template_mdate_format: '[Date Modified (MDATE): %m/%d/%Y : %H:%M:%S]',
+                height: 600,
+                image_caption: true,
+                quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
+                noneditable_noneditable_class: "mceNonEditable",
+                toolbar_mode: 'sliding',
+                contextmenu: "link image imagetools table configurepermanentpen",
+                a11y_advanced_options: true,
+
+            });*/
+
+        </script>
+        <style>
+            .tox .tox-editor-container {
+                position: fixed;
+                bottom: 0;
+            }
+        </style>
+    }
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

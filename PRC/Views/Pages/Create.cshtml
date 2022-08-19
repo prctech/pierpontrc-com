@@ -1,0 +1,69 @@
+﻿@model PRC.Models.ViewModels.PageEditViewModel
+
+@{
+    ViewData["Title"] = "Create A New Page";
+    Layout = "_LayoutAdmin";
+}
+
+<h4>@ViewData["Title"]</h4> | <a href="/admin/pages">Back to Pages</a>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="Content" type="hidden" value="New Page" />
+            <input asp-for="MenuId" type="hidden" value="00000000-0000-0000-0000-000000000000" class="menuid" />
+            <input asp-for="ParentPage" type="hidden" value="00000000-0000-0000-0000-000000000000" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Url" class="control-label"></label>
+                <input asp-for="Url" class="form-control" />
+                <span asp-validation-for="Url" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="SubPages" /> @Html.DisplayNameFor(model => model.SubPages)
+                </label>
+            </div>
+            <div class="form-group menusGroup invisible">
+                <label asp-for="Menus" class="control-label"></label>
+                <select id="Menus" name="Menus" class="form-control menuopt">
+                    @foreach (var item in Model.Menus)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="Menus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    var menuopt = document.querySelector('.menuopt');
+    var menuid = document.querySelector('.menuid');
+
+    menuopt.addEventListener('change', changeMenuId);
+
+    function changeMenuId(){
+        console.log(menuopt.value);
+    };
+
+</script>
+@if (User.IsInRole("admin"))
+{
+    <div>
+        <a asp-action="Advanced" asp-route-id="@Model.Id">Advanced</a>
+    </div>
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{await Html.RenderPartialAsync("_PageAdminScriptsPartial");}
+}

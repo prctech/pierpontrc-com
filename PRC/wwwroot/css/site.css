@@ -1,0 +1,528 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+header {
+    width: 105%;
+    margin-left: -22px;
+    box-shadow: 1px 10px 10px 5px rgba(0,0,0,.6);
+}
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+.main-nav .nav-item {
+    padding: .5rem 1rem;
+    font-size: 12px;
+    text-transform: uppercase;
+    border-right: thin groove black;
+}
+.main-nav .nav-item a {
+    text-transform: uppercase;
+    font-weight: 700;
+}
+li.mobile-only {
+    display: none;
+}
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+p {
+    margin:0;
+}
+.btn-primary {
+    color: #fff;
+    border-color: #1861ac;
+    background: #1e5799; /* Old browsers */
+    background: -moz-linear-gradient(top, #1e5799 0%, #2989d8 50%, #207cca 51%, #7db9e8 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=0 ); /* IE6-9 */
+}
+
+.btn-secondary {
+    background: rgb(69,72,77); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(69,72,77,1) 0%, rgba(0,0,0,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(69,72,77,1) 0%,rgba(0,0,0,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+.social {
+    width: 40px;
+    padding: 5px;
+    margin-left: 10px;
+    border-radius: 30px;
+    cursor:pointer;
+}
+
+
+
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+  background-image: url('../img/pierpont-bg.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+footer .container {
+  background-color: white;
+}
+/*iframe {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}*/
+.hidden {
+    display:none;
+}
+.navbar {
+    background: rgb(252,255,244); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(252,255,244,1) 0%, rgba(234,234,234,1) 50%, rgba(252,255,244,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(252,255,244,1) 0%,rgba(234,234,234,1) 50%,rgba(252,255,244,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(252,255,244,1) 0%,rgba(234,234,234,1) 50%,rgba(252,255,244,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#fcfff4',GradientType=0 ); /* IE6-9 */
+    border-radius: 5px;
+    box-shadow: 0px 6px 10px 5px rgba(0,0,0,0.4);
+    padding: 0rem 1rem !important;
+}
+.slide-container {
+    background-color: rgba(255,255,255,0.8);
+    margin: 0;
+    padding: 10px 0 35px;
+    border-radius: 10px 10px 0 0;
+}
+.slide {
+    opacity: 0;
+    width: 635px;
+    height: 260px;
+    transition: opacity .5s linear;
+    position: absolute;
+    border-radius:10px;
+}
+.content, .content-special {
+    background-color: rgba(255,255,255,0.8);
+    padding: 20px;
+    
+}
+.content img, .content-special img{
+    max-width:500px;
+}
+.footer-content {
+    background-color: rgba(255,255,255,0.8);
+    padding: 20px;
+    border-radius: 0 0 10px 10px;
+}
+.frame {
+    background-color: rgba(255,255,255,1);
+    border: thin groove gray;
+    border-radius: 10px;
+    padding: 10px 5px;
+    overflow: hidden;
+}
+.frame-thick {
+    background: rgb(255,255,255); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(241,241,241,1) 50%, rgba(225,225,225,1) 51%, rgba(246,246,246,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(241,241,241,1) 50%,rgba(225,225,225,1) 51%,rgba(246,246,246,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(241,241,241,1) 50%,rgba(225,225,225,1) 51%,rgba(246,246,246,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-9 */
+    border: thin solid black;
+    border-radius: 10px;
+    padding: 10px 5px;
+}
+.frame .btn {
+    text-align:left;
+}
+.page-controls {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px 20px 0;
+}
+
+.logo {
+  width: 260px;
+  height: 56px;
+  margin: 50px auto 50px;
+  display: block;
+}
+.admin-btn{
+    width:125px;
+}
+.save {
+    position: fixed;
+    right: 10px;
+    top: 100px;
+}
+.go {
+  position:fixed;
+  right:10px;
+  top: 60px;
+}
+.sub, .motd-btn {
+    margin-bottom: 10px;
+}
+.footer-buttons {
+    background: url(/img/call-to-action-bar.png);
+    width: 104.5%;
+    margin-left: -20px;
+}
+.footer-buttons a {
+  margin: 25px 0;
+}
+.footer-logo {
+    width: 260px;
+    height: 56px;
+    margin: 25px auto 0;
+    display: block;
+}
+.hidden-input {
+    position: absolute;
+}
+
+.cal-main {
+    width: 100%;
+    margin: 1em auto 0 auto;
+    background-color: #fff;
+    border: 2px solid white;
+    border-radius: 8px;
+}
+
+/* For the month*/
+.month-section {
+    background: #107073;
+    color: white;
+    text-align: center;
+    font-weight: 500;
+    font-size: 24px;
+    position: relative;
+}
+
+/* For the month*/
+.month-indicator {
+    text-align: center;
+}
+
+.month-prev {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    cursor:pointer;
+}
+
+.month-next {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    cursor: pointer;
+}
+
+/* CSS grid used for the dates */
+.day-of-week,
+.date-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background: #bfe5e6;
+}
+
+    /* Styles for the weekday/weekend header*/
+
+    .day-of-week > * {
+        background-color: #6fb1b3;
+        border: thin solid white;
+        font-size: 0.7em;
+        color: black;
+        font-weight: 500;
+        font-size: 16px;
+        letter-spacing: 0.1em;
+        font-variant: small-caps;
+        text-align: center;
+    }
+
+    /* Dates */
+
+    /* Style for each day*/
+    .date-grid button {
+        position: relative;
+        border: thin solid white;
+        background-color: #9FCCCD;
+        cursor: default;
+    }
+.event-list {
+    padding-bottom:25px;
+    border-bottom:thin groove solid;
+}
+.event-list:last-of-type {
+    border-bottom:none;
+}
+    .event-list:nth-of-type(2n+1) {
+        background-color:rgba(234,234,234,1);
+    }
+.event-date {
+    background: #4cb6b9 !important;
+    cursor: pointer !important;
+}
+.event-date:hover {
+    background: white!important;
+}
+
+.current-day {
+    background: #2e989b !important;
+}
+
+.current-day:hover {
+    background: white !important;
+}
+.news-list {
+    padding-bottom:25px;
+}
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+/* Photo Gallery Styles*/
+.gallery-row > .gallery-column {
+    padding: 0 8px;
+}
+
+.gallery-row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Create four equal columns that floats next to eachother */
+.gallery-column {
+    float: left;
+    width: 25%;
+}
+
+/* The Modal (background) */
+.gallery-modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: black;
+}
+
+/* Modal Content */
+.gallery-modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    width: 30%;
+    max-width: 1200px;
+}
+
+/* The Close Button */
+.gallery-close {
+    color: white;
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+    .gallery-close:hover,
+    .gallery-close:focus {
+        color: #999;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+/* Hide the slides by default */
+.mySlides {
+    display: none;
+}
+
+/* Next & previous buttons */
+.gallery-prev,
+.gallery-next {
+    cursor: pointer;
+    position: absolute;
+    top: 0%;
+    width: auto;
+    padding: 16px;
+    margin-top: -50px;
+    color: white!important;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* Position the "next button" to the right */
+.gallery-next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: -35px;
+    left: 35px;
+}
+
+/* Caption text */
+.gallery-caption-container {
+    text-align: center;
+    background-color: black;
+    padding: 2px 16px;
+    color: white;
+}
+
+img.gallery-photo {
+    opacity: 0.6;
+}
+
+.active,
+.gallery-photo:hover {
+    opacity: 1;
+}
+
+img.hover-shadow {
+    transition: 0.3s;
+}
+
+.hover-shadow:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* Mobile Adjustments*/
+@media (max-width: 768px) {
+    header {
+        width: 100%;
+        margin-left: 0px;
+    }
+    .container {
+        padding-left:0;
+        padding-right:0;
+    }
+    .main-nav .nav-item {
+        border-right:none;
+    }
+    .footer-buttons {
+        width: 100%;
+        margin-left: 0px;
+    }
+    li.mobile-only {
+        display:list-item;
+    }
+    div.mobile-only {
+        display:none!important;
+    }
+}
+@media (min-width: 576px) {
+    .navbar-expand-sm .navbar-nav .nav-link {
+        font-size: 11px;
+    }
+}
+@media (max-width: 576px) {
+    .content img, .content-special img {
+        max-width: 300px;
+    }
+}
+@media (max-width: 330px) {
+    .content img, .content-special img {
+        max-width: 268px;
+    }
+}

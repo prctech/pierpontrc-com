@@ -1,0 +1,213 @@
+﻿@{
+    ViewData["Title"] = "MVP Seminars Administation Dashboard";
+    Layout = "_LayoutAdmin";
+
+}
+
+<div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">PRC Dashboard</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group mr-2">
+            <button class="btn btn-sm btn-outline-secondary">Share</button>
+            <a href="~/list.csv" class="btn btn-sm btn-outline-secondary" download>Export</a>
+        </div>
+        <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            This week
+        </button>
+    </div>
+</div>
+<div class="d-flex justify-content-center align-items-stretch flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 border-bottom">
+
+    <div class="col-sm-12 col-md-3">
+        <div class="card text-white bg-primary">
+            <div class="card-header">Unique Visitors</div>
+            <div class="card-body">
+                <h5 class="card-title text-center">0</h5>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-3">
+        <div class="card text-white bg-success">
+            <div class="card-header">New Messages</div>
+            <div class="card-body">
+                <h5 class="card-title text-center">0</h5>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-3">
+        <div class="card text-white bg-warning">
+            <div class="card-header">Page Views</div>
+            <div class="card-body">
+                <h5 class="card-title text-center">0</h5>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-3">
+        <div class="card text-white bg-info">
+            <div class="card-header">Members Online</div>
+            <div class="card-body">
+                <h5 class="card-title text-center">0</h5>
+            </div>
+        </div>
+    </div>
+
+</div>
+<canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="1538" height="649" style="display: block; width: 1538px; height: 649px;"></canvas>
+<hr />
+<div class="card-deck">
+    <div class="card">
+        <h2>Most Viewed Pages</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-sm">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Page Title</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Lorem</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>amet</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Integer</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>dapibus</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Nulla</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>nibh</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>sagittis</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Fusce</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>augue</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>massa</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>eget</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>taciti</td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>torquent</td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>per</td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td>sodales</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card">
+        <h2>Most Searched Keywords</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-sm">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Keyword</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Lorem</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>amet</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Integer</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>dapibus</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Nulla</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>nibh</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>sagittis</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Fusce</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>augue</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>massa</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>eget</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>taciti</td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>torquent</td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>per</td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td>sodales</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ChartScriptsPartial");}
+}

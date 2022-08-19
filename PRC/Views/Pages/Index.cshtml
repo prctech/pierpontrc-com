@@ -1,0 +1,72 @@
+﻿@model PRC.Models.ViewModels.HomeViewModel
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<span class="invisible page-hassubpages hidden-input">@Model.HasSubPages</span>
+<span class="invisible page-hascontact hidden-input">@Model.HasContact</span>
+<input type="hidden" value="@Model.Id" class="page-id" />
+<input type="hidden" value="@Model.Name" class="page-name" />
+<input type="hidden" value="@Model.Url" class="page-url" />
+<input type="hidden" value="@Model.MenuId" class="page-menuid" />
+<input type="hidden" value="@Model.MotdId" class="page-motdid" />
+<input type="hidden" value="@Model.ParentPage" class="page-parentpage" />
+<div class="content">
+    <div class="row">
+        <div class="col-md-8">
+            <h1 class="frame-thick">@ViewData["Title"]</h1>
+            <div class="frame editor">
+                @Html.Raw(@Model.Content)
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="frame">
+                <h3 class="frame-thick">Welcome</h3>
+                <div class="motd">
+                    @Html.Raw(@Model.Motd)
+                </div>
+            </div>
+            <div class="frame">
+                <h3 class="frame-thick">Events Calendar</h3>
+                <div class="cal-main">
+                    <div class="calendar">
+                        <div class="month-section">
+                            <img src="/img/calendar-prev.png" class="month-prev" onclick="prevMonth()">
+                            <span class="month-indicator">March</span>
+                            <img src="/img/calendar-next.png" class="month-next" onclick="nextMonth()">
+                        </div>
+                        <div class="day-of-week">
+                            <div>Su</div>
+                            <div>Mo</div>
+                            <div>Tu</div>
+                            <div>We</div>
+                            <div>Th</div>
+                            <div>Fr</div>
+                            <div>Sa</div>
+                        </div>
+                        <div class="date-grid"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="eventModal" class="modal">
+            <div class="modal-content">
+                <span class="close">×</span>
+                <h6 class="event-dated"><br></h6>
+                <h3 class="event-title"><br></h3>
+                <p class="event-content"><br></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="slides" style="display:none;">
+@foreach (var item in @Model.Slides)
+{
+    <img src="@item.Url" class="slide img-fluid"/>
+}
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_SliderScriptPartial")
+}
